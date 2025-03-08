@@ -1,3 +1,4 @@
+// client/src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
@@ -14,6 +15,7 @@ import ChefRoute from './components/routing/ChefRoute';
 import ClientRoute from './components/routing/ClientRoute';
 import AdminRoute from './components/routing/AdminRoute';
 import AdminDashboard from './pages/AdminDashboard';
+import ChefBooking from './pages/chefbooking'; // Import ChefBooking component
 import { AuthProvider } from './contexts/AuthContext';
 import './App.css';
 
@@ -29,6 +31,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/chefs" element={<ChefList />} />
             <Route path="/chefs/:id" element={<ChefDetail />} />
+            <Route path="/chefbooking/:id" element={<ChefBooking />} /> {/* Add ChefBooking route */}
             
             {/* Protected Routes */}
             <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />

@@ -1,75 +1,51 @@
+// client/src/pages/chefbooking.js
 import React, { useState, useEffect } from 'react';
-import { getChefBookings, updateBookingStatus } from '../services/api';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import './chefbooking.css';
 
-const ChefBookings = () => {
-  const [bookings, setBookings] = useState([]);
+const ChefBooking = () => {
+  const { id } = useParams();
+  const [chef, setChef] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [filter, setFilter] = useState('all');
+  const [bookingStatus, setBookingStatus] = useState("");
 
   useEffect(() => {
-    const fetchBookings = async () => {
+    const fetchChef = async () => {
       try {
-        const data = await getChefBookings();
-        setBookings(data);
-        setLoading(false);
+        const response = await axios.get(`/api/chefs/${id}`);
+        setChef(response.data);
       } catch (err) {
-        setError('Error fetching bookings. Please try again.');
+        setError(err.message);
+      } finally {
         setLoading(false);
       }
     };
 
-    fetchBookings();
-  }, []);
+    fetchChef();
+  }, [id]);
 
-  const handleAcceptBooking = async (bookingId) => {
+  const handleBooking = async () => {
     try {
-      await updateBookingStatus(bookingId, 'confirmed');
-      setBookings(bookings.map(booking => 
-        booking._id === bookingId ? { ...booking, status: 'confirmed' } : booking
-      ));
+      const response = await axios.post(`/api/bookings`, { chefId: id });
+      setBookingStatus(response.data.status);
     } catch (err) {
-      setError('Error accepting booking. Please try again.');
+      setError(err.message);
     }
   };
 
-  const handleRejectBooking = async (bookingId) => {
-    try {
-      await updateBookingStatus(bookingId, 'rejected');
-      setBookings(bookings.map(booking => 
-        booking._id === bookingId ? { ...booking, status: 'rejected' } : booking
-      ));
-    } catch (err) {
-      setError('Error rejecting booking. Please try again.');
-    }
-  };
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
-  const handleCompleteBooking = async (bookingId) => {
-    try {
-      await updateBookingStatus(bookingId, 'completed');
-      setBookings(bookings.map(booking => 
-        booking._id === bookingId ? { ...booking, status: 'completed' } : booking
-      ));
-    } catch (err) {
-      setError('Error completing booking. Please try again.');
-    }
-  };
+  return (
+    <div className="chef-booking">
+      <h1>Book Chef {chef.name}</h1>
+      <p>{chef.description}</p>
+      <button onClick={handleBooking}>Book Now</button>
+      {bookingStatus && <p>Booking Status: {bookingStatus}</p>}
+    </div>
+  );
+};
 
-  const handleFilterChange = (e) => {
-    setFilter(e.target.value);
-  };
-
-  const filteredBookings = filter === 'all' 
-    ? bookings 
-    : bookings.filter(booking => booking.status === filter);
-
-  const getStatusBadgeClass = (status) => {
-    switch (status) {
-      case 'pending':
-        return 'badge bg-warning text-dark';
-      case 'confirmed':
-        return 'badge bg-success';
-      case 'completed':
-        return 'badge bg-info';
-      case 'cancelled':
-        return
+export default ChefBooking;
