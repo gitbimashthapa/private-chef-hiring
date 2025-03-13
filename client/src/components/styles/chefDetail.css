@@ -1,0 +1,275 @@
+/* styles/ChefDetail.css */
+.chef-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.chef-header {
+  margin-bottom: 30px;
+}
+
+.chef-profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.chef-profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chef-info {
+  flex: 1;
+}
+
+.chef-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.badge {
+  background-color: #f0f8ff;
+  color: #4a6fa5;
+  border: 1px solid #b8d8fb;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.85rem;
+}
+
+.chef-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.stars {
+  color: #ffc107;
+}
+
+.rating-count {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.chef-price {
+  font-weight: 500;
+  color: #333;
+}
+
+.chef-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+
+@media (max-width: 768px) {
+  .chef-content {
+    grid-template-columns: 1fr;
+  }
+
+  .chef-profile {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.chef-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.chef-main-content section {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.chef-bio h2,
+.chef-experience h2,
+.chef-menu-samples h2,
+.chef-gallery h2,
+.chef-reviews h2 {
+  margin-top: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.chef-experience ul {
+  list-style: none;
+  padding: 0;
+}
+
+.chef-experience li {
+  margin-bottom: 20px;
+}
+
+.experience-years {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 5px 0;
+}
+
+.menu-sample {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.menu-sample:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.menu-description {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.menu-items {
+  padding-left: 20px;
+}
+
+.booking-sidebar {
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+}
+
+.booking-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.booking-card h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.booking-field {
+  margin-bottom: 20px;
+}
+
+.booking-field label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.meal-type-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.meal-type-btn {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.meal-type-btn:hover {
+  background-color: #e9ecef;
+}
+
+.meal-type-btn.selected {
+  background-color: #4a6fa5;
+  color: white;
+  border-color: #4a6fa5;
+}
+
+.guest-counter {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.guest-counter button {
+  background-color: #f8f9fa;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.guest-counter button:disabled {
+  color: #adb5bd;
+  cursor: not-allowed;
+}
+
+.guest-counter span {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.booking-field textarea {
+  width: 100%;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.booking-summary {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  padding-top: 8px;
+  margin-top: 8px;
+  border-top: 1px solid #dee2e6;
+}
+
+.book-now-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.booking-info {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+}
+
+.error-container,
+.not-found-container {
+  text-align: center;
+  padding: 40px 20px;
+}
